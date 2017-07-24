@@ -1,15 +1,19 @@
 package com.lunch.client;
 
-import com.lunch.things.processors.NameThingProcessor;
-import com.lunch.things.processors.NumberThingProcessor;
 import com.lunch.things.Thing;
 import com.lunch.things.ThingAccessor;
+import com.lunch.things.processors.NameThingProcessor;
+import com.lunch.things.processors.NumberThingProcessor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ThingClient {
 
+    /**
+     * Uses the accessor to get all the things, and then sums the numbers across all the things.
+     * @return
+     */
     public Integer sumAllThingNumbers() {
         ThingAccessor accessor = null;
         Integer result = null;
@@ -36,6 +40,11 @@ public class ThingClient {
         }
     }
 
+    /**
+     * Uses the accessor to get all the things, and then collects all the names in a single CSV
+     * string
+     * @return
+     */
     public String getAllNamesAsCsv() {
         ThingAccessor accessor = null;
         String result = null;

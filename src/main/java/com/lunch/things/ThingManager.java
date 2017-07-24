@@ -4,6 +4,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+/**
+ * Internal class for storing and accessing thing instances.
+ */
 class ThingManager {
 
     private final List<Thing> things = new ArrayList<>();

@@ -1,10 +1,10 @@
 package com.lunch.things;
 
-import java.util.List;
 import java.util.logging.Logger;
 
 /**
- * All access to things must be made through this
+ * All access to things must be made through this.  There's a very specific pattern as to how you
+ * go about using this.  PMD will complain if you do it wrong...
  */
 public class ThingAccessor {
 
