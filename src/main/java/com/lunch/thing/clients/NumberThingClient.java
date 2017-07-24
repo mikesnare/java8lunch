@@ -12,28 +12,13 @@ public class NumberThingClient {
      * @return
      */
     public Integer sumAllThingNumbersSquared() {
-        ThingAccessor accessor = null;
-        Integer result = null;
-        try {
-            accessor = ThingAccessor.createAccessor("sumAllThingNumbers");
-            accessor.open();
+        return ThingAccessor.withAllTheThings("sumAllThingNumbersSquared", things -> {
             int sum = 0;
-            for (Thing thing : accessor.accessThings().getThings()) {
+            for (Thing thing : things) {
                 sum += Math.pow(process(thing, Thing::getNumber), 2);
             }
-            result = Integer.valueOf(sum);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (accessor != null) {
-                try {
-                    accessor.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            return result;
-        }
+            return sum;
+        });
     }
 
     /**
@@ -41,30 +26,15 @@ public class NumberThingClient {
      * @return
      */
     public Integer sumAllPositiveThingNumbersSquared() {
-        ThingAccessor accessor = null;
-        Integer result = null;
-        try {
-            accessor = ThingAccessor.createAccessor("sumAllThingNumbers");
-            accessor.open();
+        return ThingAccessor.withAllTheThings("sumAllPositiveThingNumbersSquared", things -> {
             int sum = 0;
-            for (Thing thing : accessor.accessThings().getThings()) {
+            for (Thing thing : things) {
                 if (thing.getNumber() > 0) {
                     sum += Math.pow(process(thing, Thing::getNumber), 2);
                 }
             }
-            result = Integer.valueOf(sum);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (accessor != null) {
-                try {
-                    accessor.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            return result;
-        }
+            return sum;
+        });
     }
 
     /**

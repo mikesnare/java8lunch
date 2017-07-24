@@ -15,25 +15,13 @@ public class GenericThingClient<T> {
      * @return
      */
     public List<T> processAllTheThings(Function<Thing, T> processor) {
-        ThingAccessor accessor = null;
-        List<T> results = new ArrayList<>();
-        try {
-            accessor = ThingAccessor.createAccessor("processAllTheThings");
-            for (Thing thing : accessor.accessThings().getThings()) {
+        return ThingAccessor.withAllTheThings("processAllTheThings", things -> {
+            List<T> results = new ArrayList<>();
+            for (Thing thing : things) {
                 results.add(processor.apply(thing));
             }
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (accessor != null) {
-                try {
-                    accessor.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
             return results;
-        }
+        });
     }
 
 }

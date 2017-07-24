@@ -15,27 +15,13 @@ public class StringThingClient {
      * @return
      */
     public String getAllNamesAsCsv() {
-        ThingAccessor accessor = null;
-        String result = null;
-        try {
-            accessor = ThingAccessor.createAccessor("getAllNamesAsCsv");
+        return ThingAccessor.withAllTheThings("getAllNamesAsCsv", things -> {
             List<String> names = new ArrayList<>();
-            for (Thing thing : accessor.accessThings().getThings()) {
+            for (Thing thing : things) {
                 names.add(process(thing, Thing::getName));
             }
-            result = String.join(",", names);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (accessor != null) {
-                try {
-                    accessor.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            return result;
-        }
+            return String.join(",", names);
+        });
     }
 
     /**
@@ -44,29 +30,15 @@ public class StringThingClient {
      * @return
      */
     public String getAllPositiveNamesAsCsv() {
-        ThingAccessor accessor = null;
-        String result = null;
-        try {
-            accessor = ThingAccessor.createAccessor("getAllNamesAsCsv");
+        return ThingAccessor.withAllTheThings("getAllNamesAsCsv", things -> {
             List<String> names = new ArrayList<>();
-            for (Thing thing : accessor.accessThings().getThings()) {
+            for (Thing thing : things) {
                 if (thing.getNumber() > 0) {
                     names.add(process(thing, Thing::getName));
                 }
             }
-            result = String.join(",", names);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (accessor != null) {
-                try {
-                    accessor.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            return result;
-        }
+            return String.join(",", names);
+        });
     }
 
     /**
