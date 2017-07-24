@@ -1,4 +1,4 @@
-package com.lunch.things;
+package com.lunch.thing;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

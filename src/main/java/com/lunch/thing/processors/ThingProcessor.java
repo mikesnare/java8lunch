@@ -1,6 +1,6 @@
-package com.lunch.things.processors;
+package com.lunch.thing.processors;
 
-import com.lunch.things.Thing;
+import com.lunch.thing.Thing;
 
 /**
  * Knows how to process an individual thing and return something else.
@@ -8,6 +8,6 @@ import com.lunch.things.Thing;
  */
 public interface ThingProcessor<R> {
 
-    public R processThing(Thing thing);
+    R processThing(Thing thing);
 
 }

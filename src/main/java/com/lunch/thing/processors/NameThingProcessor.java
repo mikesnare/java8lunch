@@ -1,6 +1,6 @@
-package com.lunch.things.processors;
+package com.lunch.thing.processors;
 
-import com.lunch.things.Thing;
+import com.lunch.thing.Thing;
 
 /**
  * Processes a thing by returning its name

@@ -1,4 +1,4 @@
-package com.lunch.things;
+package com.lunch.thing;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -13,7 +13,7 @@ class ThingManager {
 
     private static ThingManager instance;
 
-    public static synchronized final ThingManager Instance() {
+    static synchronized final ThingManager Instance() {
         if (ThingManager.instance == null) {
             ThingManager.instance = new ThingManager(5);
         }
@@ -22,7 +22,7 @@ class ThingManager {
 
     private ThingManager(int count) {
         for (int i = 1; i <= count; i++) {
-            things.add(new Thing("com.lunch.things.Thing " + i, i));
+            things.add(new Thing("Thing " + i, i));
         }
     }
 
