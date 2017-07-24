@@ -21,7 +21,7 @@ public class StringThingClient {
             accessor = ThingAccessor.createAccessor("getAllNamesAsCsv");
             List<String> names = new ArrayList<>();
             for (Thing thing : accessor.accessThings().getThings()) {
-                names.add(process(thing, t -> t.getName()));
+                names.add(process(thing, Thing::getName));
             }
             result = String.join(",", names);
         } catch (Exception e) {
@@ -51,7 +51,7 @@ public class StringThingClient {
             List<String> names = new ArrayList<>();
             for (Thing thing : accessor.accessThings().getThings()) {
                 if (thing.getNumber() > 0) {
-                    names.add(process(thing, t -> t.getName()));
+                    names.add(process(thing, Thing::getName));
                 }
             }
             result = String.join(",", names);

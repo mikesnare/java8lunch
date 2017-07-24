@@ -18,7 +18,7 @@ public class NumberThingClient {
             accessor.open();
             int sum = 0;
             for (Thing thing : accessor.accessThings().getThings()) {
-                sum += Math.pow(process(thing, t -> t.getNumber()), 2);
+                sum += Math.pow(process(thing, Thing::getNumber), 2);
             }
             result = Integer.valueOf(sum);
         } catch (Exception e) {
@@ -48,7 +48,7 @@ public class NumberThingClient {
             int sum = 0;
             for (Thing thing : accessor.accessThings().getThings()) {
                 if (thing.getNumber() > 0) {
-                    sum += Math.pow(process(thing, t -> t.getNumber()), 2);
+                    sum += Math.pow(process(thing, Thing::getNumber), 2);
                 }
             }
             result = Integer.valueOf(sum);
