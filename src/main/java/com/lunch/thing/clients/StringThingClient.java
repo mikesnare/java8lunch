@@ -2,7 +2,6 @@ package com.lunch.thing.clients;
 
 import com.lunch.thing.Thing;
 import com.lunch.thing.ThingAccessor;
-import com.lunch.thing.processors.NameThingProcessor;
 import com.lunch.thing.processors.ThingProcessor;
 
 import java.util.ArrayList;
@@ -20,10 +19,9 @@ public class StringThingClient {
         String result = null;
         try {
             accessor = ThingAccessor.createAccessor("getAllNamesAsCsv");
-            NameThingProcessor ntp = new NameThingProcessor();
             List<String> names = new ArrayList<>();
             for (Thing thing : accessor.accessThings().getThings()) {
-                names.add(process(thing, ntp));
+                names.add(process(thing, t -> t.getName()));
             }
             result = String.join(",", names);
         } catch (Exception e) {
@@ -50,11 +48,10 @@ public class StringThingClient {
         String result = null;
         try {
             accessor = ThingAccessor.createAccessor("getAllNamesAsCsv");
-            NameThingProcessor ntp = new NameThingProcessor();
             List<String> names = new ArrayList<>();
             for (Thing thing : accessor.accessThings().getThings()) {
                 if (thing.getNumber() > 0) {
-                    names.add(process(thing, ntp));
+                    names.add(process(thing, t -> t.getName()));
                 }
             }
             result = String.join(",", names);
