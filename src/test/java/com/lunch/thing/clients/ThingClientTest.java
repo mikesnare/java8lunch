@@ -18,7 +18,7 @@ public class ThingClientTest {
         GenericThingClient client = new GenericThingClient();
         ThingProcessor processor = new NumberThingProcessor();
         assertEquals("Process All The Numbers failed",
-                Arrays.asList(1,2,3,4,5),
+                Arrays.asList(-5, -4, -3, -2, -1, 0, 1, 2, 3, 4, 5),
                 client.processAllTheThings(new NumberThingProcessor()));
     }
 
@@ -27,7 +27,7 @@ public class ThingClientTest {
         GenericThingClient client = new GenericThingClient();
         ThingProcessor processor = new NumberThingProcessor();
         assertEquals("Process All The Numbers failed",
-                Arrays.asList("Thing 1","Thing 2","Thing 3","Thing 4","Thing 5"),
+                Arrays.asList("Thing -5", "Thing -4", "Thing -3", "Thing -2", "Thing -1", "Thing 0", "Thing 1", "Thing 2", "Thing 3", "Thing 4", "Thing 5"),
                 client.processAllTheThings(new NameThingProcessor()));
     }
 

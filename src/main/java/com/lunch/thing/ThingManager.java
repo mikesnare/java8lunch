@@ -15,13 +15,13 @@ class ThingManager {
 
     static synchronized final ThingManager Instance() {
         if (ThingManager.instance == null) {
-            ThingManager.instance = new ThingManager(5);
+            ThingManager.instance = new ThingManager();
         }
         return ThingManager.instance;
     }
 
-    private ThingManager(int count) {
-        for (int i = 1; i <= count; i++) {
+    private ThingManager() {
+        for (int i = -5; i <= 5; i++) {
             things.add(new Thing("Thing " + i, i));
         }
     }
