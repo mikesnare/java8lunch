@@ -9,21 +9,20 @@ import java.util.List;
  */
 class ThingManager {
 
+    private static ThingManager instance;
     private final List<Thing> things = new ArrayList<>();
 
-    private static ThingManager instance;
+    private ThingManager() {
+        for (int i = -5; i <= 5; i++) {
+            things.add(new Thing("Thing " + i, i));
+        }
+    }
 
     static synchronized final ThingManager Instance() {
         if (ThingManager.instance == null) {
             ThingManager.instance = new ThingManager();
         }
         return ThingManager.instance;
-    }
-
-    private ThingManager() {
-        for (int i = -5; i <= 5; i++) {
-            things.add(new Thing("Thing " + i, i));
-        }
     }
 
     // All access from outside the package should go through an accessor.

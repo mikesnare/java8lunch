@@ -23,10 +23,9 @@ public class ThingAccessor {
     }
 
     /**
-     *
-     * @param scope For debugging
+     * @param scope   For debugging
      * @param handler Will be passed a list of all the things.  Must return a single value
-     * @param <R> The return type.
+     * @param <R>     The return type.
      * @return
      */
     public static final <R> R withAllTheThings(String scope, Function<List<Thing>, R> handler) {
