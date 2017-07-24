@@ -2,10 +2,10 @@ package com.lunch.thing.clients;
 
 import com.lunch.thing.Thing;
 import com.lunch.thing.ThingAccessor;
-import com.lunch.thing.processors.ThingProcessor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class StringThingClient {
 
@@ -72,8 +72,8 @@ public class StringThingClient {
     /**
      * Handles null checks, trimming.
      */
-    private String process(Thing thing, ThingProcessor<String> tp) {
-        return (thing.getName() != null ? tp.processThing(thing) : "").trim();
+    private String process(Thing thing, Function<Thing, String> tp) {
+        return (thing.getName() != null ? tp.apply(thing) : "").trim();
     }
 
 }

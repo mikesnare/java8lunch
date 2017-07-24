@@ -2,7 +2,8 @@ package com.lunch.thing.clients;
 
 import com.lunch.thing.Thing;
 import com.lunch.thing.ThingAccessor;
-import com.lunch.thing.processors.ThingProcessor;
+
+import java.util.function.Function;
 
 public class NumberThingClient {
 
@@ -69,8 +70,8 @@ public class NumberThingClient {
     /**
      * Handles null checks, conversion to int.
      */
-    private int process(Thing thing, ThingProcessor<Integer> tp) {
-        return thing.getNumber() != null ? tp.processThing(thing).intValue() : 0;
+    private int process(Thing thing, Function<Thing, Integer> tp) {
+        return thing.getNumber() != null ? tp.apply(thing).intValue() : 0;
     }
 
 }
