@@ -5,7 +5,8 @@ import java.util.Collections;
 import java.util.List;
 
 /**
- * Internal class for storing and accessing thing instances.
+ * Internal class for storing and accessing thing instances.  Outside access to Things is
+ * via a ThingAccessor
  */
 class ThingManager {
 
