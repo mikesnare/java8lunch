@@ -36,12 +36,13 @@ public abstract class DataSetBase {
     public DataSetBase() {
         this.baskets = new ArrayList<>();
 
-        // the first basket is not to be included
+        // the first basket is not to be included, so it's content shouldn't be in the result
         baskets.add(new Basket(false, Arrays.asList(
                 new Product(APPLE, FRUIT, true) // there should be no apples in the result
         )));
 
-        // There shouldn't be any Bath products at all in the result
+        // There shouldn't be any Bath products at all in the result because this is the only
+        // code that adds any and it's marked for exclusion
         baskets.add(new Basket(false, Arrays.asList(
                 new Product(BATH, SOAP, true)
         )));
