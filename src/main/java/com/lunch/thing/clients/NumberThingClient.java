@@ -2,7 +2,6 @@ package com.lunch.thing.clients;
 
 import com.lunch.thing.Thing;
 import com.lunch.thing.ThingAccessor;
-import com.lunch.thing.processors.NumberThingProcessor;
 import com.lunch.thing.processors.ThingProcessor;
 
 public class NumberThingClient {
@@ -16,11 +15,10 @@ public class NumberThingClient {
         Integer result = null;
         try {
             accessor = ThingAccessor.createAccessor("sumAllThingNumbersSquared");
-            NumberThingProcessor ntp = new NumberThingProcessor();
             accessor.open();
             int sum = 0;
             for (Thing thing : accessor.accessThings().getThings()) {
-                sum += Math.pow(process(thing, ntp), 2);
+                sum += Math.pow(process(thing, t -> t.getNumber()), 2);
             }
             result = Integer.valueOf(sum);
         } catch (Exception e) {
@@ -46,12 +44,11 @@ public class NumberThingClient {
         Integer result = null;
         try {
             accessor = ThingAccessor.createAccessor("sumAllPositiveThingNumbersSquared");
-            NumberThingProcessor ntp = new NumberThingProcessor();
             accessor.open();
             int sum = 0;
             for (Thing thing : accessor.accessThings().getThings()) {
                 if (thing.getNumber() > 0) {
-                    sum += Math.pow(process(thing, ntp), 2);
+                    sum += Math.pow(process(thing, t -> t.getNumber()), 2);
                 }
             }
             result = Integer.valueOf(sum);
