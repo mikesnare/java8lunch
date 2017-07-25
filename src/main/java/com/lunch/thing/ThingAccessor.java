@@ -17,6 +17,7 @@ public class ThingAccessor {
     }
 
     public static final ThingAccessor createAccessor(String scope) {
+        logger.info("Creating ThingAccessor for scope " + scope);
         return new ThingAccessor(scope);
     }
 

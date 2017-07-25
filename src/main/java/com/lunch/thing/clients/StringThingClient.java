@@ -47,7 +47,7 @@ public class StringThingClient {
         ThingAccessor accessor = null;
         String result = null;
         try {
-            accessor = ThingAccessor.createAccessor("getAllNamesAsCsv");
+            accessor = ThingAccessor.createAccessor("getAllPositiveNamesAsCsv");
             List<String> names = new ArrayList<>();
             for (Thing thing : accessor.accessThings().getThings()) {
                 if (thing.getNumber() > 0) {

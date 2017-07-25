@@ -9,12 +9,9 @@ import java.util.List;
  * Simple wrapper around some number of things.  These are returned by the ThingAccessor
  */
 @Data
+@AllArgsConstructor
 public class ThingResults {
 
     private final List<Thing> things;
-
-    public ThingResults(List<Thing> things) {
-        this.things = Collections.unmodifiableList(things);
-    }
 
 }
