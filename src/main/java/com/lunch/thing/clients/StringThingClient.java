@@ -2,11 +2,10 @@ package com.lunch.thing.clients;
 
 import com.lunch.thing.Thing;
 import com.lunch.thing.ThingAccessor;
-import com.lunch.thing.processors.NameThingProcessor;
-import com.lunch.thing.processors.ThingProcessor;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Function;
 
 public class StringThingClient {
 
@@ -20,10 +19,9 @@ public class StringThingClient {
         String result = null;
         try {
             accessor = ThingAccessor.createAccessor("getAllNamesAsCsv");
-            NameThingProcessor ntp = new NameThingProcessor();
             List<String> names = new ArrayList<>();
             for (Thing thing : accessor.accessThings().getThings()) {
-                names.add(process(thing, ntp));
+                names.add(process(thing, Thing::getName));
             }
             result = String.join(",", names);
         } catch (Exception e) {
@@ -50,11 +48,10 @@ public class StringThingClient {
         String result = null;
         try {
             accessor = ThingAccessor.createAccessor("getAllPositiveNamesAsCsv");
-            NameThingProcessor ntp = new NameThingProcessor();
             List<String> names = new ArrayList<>();
             for (Thing thing : accessor.accessThings().getThings()) {
                 if (thing.getNumber() > 0) {
-                    names.add(process(thing, ntp));
+                    names.add(process(thing, Thing::getName));
                 }
             }
             result = String.join(",", names);
@@ -75,8 +72,8 @@ public class StringThingClient {
     /**
      * Handles null checks, trimming.
      */
-    private String process(Thing thing, ThingProcessor<String> tp) {
-        return (thing.getName() != null ? tp.processThing(thing) : "").trim();
+    private String process(Thing thing, Function<Thing, String> tp) {
+        return (thing.getName() != null ? tp.apply(thing) : "").trim();
     }
 
 }
