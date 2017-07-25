@@ -30,7 +30,7 @@ public class StringThingClient {
      * @return
      */
     public String getAllPositiveNamesAsCsv() {
-        return ThingAccessor.withAllTheThings("getAllNamesAsCsv", things -> {
+        return ThingAccessor.withAllTheThings("getAllPositiveNamesAsCsv", things -> {
             List<String> names = new ArrayList<>();
             for (Thing thing : things) {
                 if (thing.getNumber() > 0) {
