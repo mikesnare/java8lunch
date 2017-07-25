@@ -1,5 +1,7 @@
 package com.lunch.thing;
 
+import java.util.List;
+import java.util.function.Function;
 import java.util.logging.Logger;
 
 /**
@@ -21,16 +23,45 @@ public class ThingAccessor {
         return new ThingAccessor(scope);
     }
 
-    public void open() throws Exception {
+    /**
+     *
+     * @param scope For debugging
+     * @param handler Will be passed a list of all the things.  Must return a single value
+     * @param <R> The return type.
+     * @return
+     */
+    public static final <R> R withAllTheThings(String scope, Function<List<Thing>, R> handler) {
+
+        ThingAccessor accessor = null;
+        R result = null;
+        try {
+            accessor = ThingAccessor.createAccessor(scope);
+            accessor.open();
+            result = handler.apply(accessor.accessThings().getThings());
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            if (accessor != null) {
+                try {
+                    accessor.close();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+        return result;
+    }
+
+    private void open() throws Exception {
         logger.info("Opening ThingAccessor for scope " + scope);
     }
 
-    public ThingResults accessThings() throws Exception {
+    private ThingResults accessThings() throws Exception {
         logger.info("Accessing Things for scope " + scope);
         return new ThingResults(ThingManager.Instance().getThings());
     }
 
-    public void close() throws Exception {
+    private void close() throws Exception {
         logger.info("Closing ThingAccessor for scope " + scope);
     }
 

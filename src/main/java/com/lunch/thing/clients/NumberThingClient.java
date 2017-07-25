@@ -2,8 +2,8 @@ package com.lunch.thing.clients;
 
 import com.lunch.thing.Thing;
 import com.lunch.thing.ThingAccessor;
-import com.lunch.thing.processors.NumberThingProcessor;
-import com.lunch.thing.processors.ThingProcessor;
+
+import java.util.function.Function;
 
 public class NumberThingClient {
 
@@ -12,29 +12,13 @@ public class NumberThingClient {
      * @return
      */
     public Integer sumAllThingNumbersSquared() {
-        ThingAccessor accessor = null;
-        Integer result = null;
-        try {
-            accessor = ThingAccessor.createAccessor("sumAllThingNumbersSquared");
-            NumberThingProcessor ntp = new NumberThingProcessor();
-            accessor.open();
+        return ThingAccessor.withAllTheThings("sumAllThingNumbersSquared", things -> {
             int sum = 0;
-            for (Thing thing : accessor.accessThings().getThings()) {
-                sum += Math.pow(process(thing, ntp), 2);
+            for (Thing thing : things) {
+                sum += Math.pow(process(thing, Thing::getNumber), 2);
             }
-            result = Integer.valueOf(sum);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (accessor != null) {
-                try {
-                    accessor.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            return result;
-        }
+            return sum;
+        });
     }
 
     /**
@@ -42,38 +26,22 @@ public class NumberThingClient {
      * @return
      */
     public Integer sumAllPositiveThingNumbersSquared() {
-        ThingAccessor accessor = null;
-        Integer result = null;
-        try {
-            accessor = ThingAccessor.createAccessor("sumAllPositiveThingNumbersSquared");
-            NumberThingProcessor ntp = new NumberThingProcessor();
-            accessor.open();
+        return ThingAccessor.withAllTheThings("sumAllPositiveThingNumbersSquared", things -> {
             int sum = 0;
-            for (Thing thing : accessor.accessThings().getThings()) {
+            for (Thing thing : things) {
                 if (thing.getNumber() > 0) {
-                    sum += Math.pow(process(thing, ntp), 2);
+                    sum += Math.pow(process(thing, Thing::getNumber), 2);
                 }
             }
-            result = Integer.valueOf(sum);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (accessor != null) {
-                try {
-                    accessor.close();
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
-            }
-            return result;
-        }
+            return sum;
+        });
     }
 
     /**
      * Handles null checks, conversion to int.
      */
-    private int process(Thing thing, ThingProcessor<Integer> tp) {
-        return thing.getNumber() != null ? tp.processThing(thing).intValue() : 0;
+    private int process(Thing thing, Function<Thing, Integer> tp) {
+        return thing.getNumber() != null ? tp.apply(thing).intValue() : 0;
     }
 
 }
