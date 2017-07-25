@@ -10,7 +10,7 @@ public class NumberThingClientTest {
     public void testSumAllThingNumbers() {
         NumberThingClient client = new NumberThingClient();
         assertEquals("Incorrect Sum",
-                2*1 + 2*4 + 2*9 + 2*16 + 2*25,
+                2 * 1 + 2 * 4 + 2 * 9 + 2 * 16 + 2 * 25,
                 (long) client.sumAllThingNumbersSquared());
     }
 
