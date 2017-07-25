@@ -15,7 +15,7 @@ public class NumberThingClient {
         ThingAccessor accessor = null;
         Integer result = null;
         try {
-            accessor = ThingAccessor.createAccessor("sumAllThingNumbers");
+            accessor = ThingAccessor.createAccessor("sumAllThingNumbersSquared");
             accessor.open();
             int sum = 0;
             for (Thing thing : accessor.accessThings().getThings()) {
@@ -44,7 +44,7 @@ public class NumberThingClient {
         ThingAccessor accessor = null;
         Integer result = null;
         try {
-            accessor = ThingAccessor.createAccessor("sumAllThingNumbers");
+            accessor = ThingAccessor.createAccessor("sumAllPositiveThingNumbersSquared");
             accessor.open();
             int sum = 0;
             for (Thing thing : accessor.accessThings().getThings()) {
